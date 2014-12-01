@@ -79,6 +79,11 @@ body {
  * contexts in Firefox 4+, Safari, and Chrome.
  */
 
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
 /**
  * Address styling not present in IE 8/9.
  */
@@ -136,9 +141,22 @@ body {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 
+button {
+  color: inherit;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
 /**
  * Address `overflow` set to `hidden` in IE 8/9/10/11.
  */
+
+button {
+  overflow: visible;
+}
 
 /**
  * Address inconsistent `text-transform` inheritance for `button` and `select`.
@@ -147,6 +165,10 @@ body {
  * Correct `select` style inheritance in Firefox.
  */
 
+button {
+  text-transform: none;
+}
+
 /**
  * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
  *    and `video` controls.
@@ -154,6 +176,13 @@ body {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
+
+button {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
 
 /**
  * Re-set default cursor for disabled elements.
@@ -225,6 +254,44 @@ input::-moz-focus-inner {
  * Remove most spacing between table cells.
  */
 
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td {
+  padding: 0;
+}
+
 /* variables */
 
 /* imports */
+
+#board {
+  margin: 20px auto;
+  width: 300px;
+  height: 300px;
+  /*display: none; */
+}
+
+#board td {
+  width: 100px;
+  height: 100px;
+  background: whitesmoke;
+}
+
+.top {
+  border-bottom: 3px solid grey;
+}
+
+.bottom {
+  border-top: 3px solid grey;
+}
+
+.left {
+  border-right: 3px solid grey;
+}
+
+.right {
+  border-left: 3px solid grey;
+}
