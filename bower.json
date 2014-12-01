@@ -1,0 +1,23 @@
+{
+  "name": "tic-tac-toe",
+  "version": "0.0.01",
+  "homepage": "https://github.com/beck410/tic-tac-toe",
+  "authors": [
+    "beck410 <beck410@hotmail.com>"
+  ],
+  "description": "Tic Tac Toe game",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "lodash": "~2.4.1",
+    "normalize.css": "~3.0.2"
+  }
+}
