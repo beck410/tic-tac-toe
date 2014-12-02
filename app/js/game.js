@@ -1,14 +1,4 @@
-;var game = (function(){
-  var gamePlay = {};
-
-  gamePlay.initialBoard = [['','',''],['','',''],['','','']];
-  gamePlay.generateBoard = function(){
-    this.initialBoard.forEach(function(){
-      
-    });
-    
-  } 
-  return gamePlay;
-  
-})();
+;(function(gamePlay){
+  gamePlay.initialBoard = [['','',''],['','',''],['','','']];  
+})(gamePlay = window.gamePlay || {});
 
