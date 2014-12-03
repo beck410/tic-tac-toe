@@ -1,4 +1,7 @@
-;(function(gamePlay){
-  gamePlay.initialBoard = [['','',''],['','',''],['','','']];  
-})(gamePlay = window.gamePlay || {});
+;(function(game){
+  var turnCounter = true;
+  game.initialBoard = [['','',''],['','',''],['','','']];  
+  
+  game.gameTurn = turnCounter;
+})(game = window.game || {});
 
