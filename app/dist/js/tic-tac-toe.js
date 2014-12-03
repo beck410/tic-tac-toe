@@ -1,25 +1,26 @@
 ;(function(c,$,db,game){
+  /*global describe it */  
   'use strict';
 
-  //checks for two people and sets up turns
-  c.startGame = function(){ 
-   db.playerOne.once('value',function(ref){
-     var playerOneStatus = ref.val();
-
-     playerOneStatus !== true ? playerOne():playerTwo();
-   }); 
-  };
+    c.startGame =function (){
+      db.playerOne.once('value',function(ref){
+        var playerOneStatus = ref.val();
+        playerOneStatus !== true ? playerOne():playerTwo();
+      }); 
+    };
 
   function playerOne(){
     db.playerOne.set(true);
+    game.gameTurn = true;
     console.log('playerOne set');
+    console.log(game.gameTurn);
   }
 
   function playerTwo(){
     db.playerTwo.set(true);
     game.gameTurn = false;
     console.log('playerTwo Set');
-    console.log(game.gameTurn);
+    console.log(game.gameTurn)
   }
 
 })(controller = window.controller || {}, jQuery, db,game);
@@ -27,22 +28,24 @@
 
 ;(function(dom, $,db, game, c){
   'use strict';
-  //click event for join game   
-  $('#join-game').click(function(){
-    //db.joinGame.set(0);
-    c.startGame();
+  $().ready(function(){
+    //click event for join game   
+    $('#join-game').click(function(){
+      //db.joinGame.set(0);
+      c.startGame();
+    });
   });
-    
 })(dom = window.dom || {},jQuery,db,game,controller);
 
 
 ;(function(db){
   'use strict';
-  db.game = new Firebase('https://bcd-tictactoe.firebaseio.com');
+    db.game = new Firebase('https://bcd-tictactoe.firebaseio.com');
 
-  db.joinGame = db.game.child('join-game');
-  db.playerOne = db.game.child('playerOne');
-  db.playerTwo = db.game.child('playerTwo');
+    db.joinGame = db.game.child('join-game');
+    db.playerOne = db.game.child('playerOne');
+    db.playerTwo = db.game.child('playerTwo');
+    db.players = db.game.child('players');
 })(db = window.firebase || {});
 
 ;(function(game){
