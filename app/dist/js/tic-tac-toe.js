@@ -1,41 +1,23 @@
 ;(function(c,$,db,game){
-  /*global describe it */  
+  /*global describe it */
   'use strict';
-
-    c.startGame =function (){
-      db.playerOne.once('value',function(ref){
-        var playerOneStatus = ref.val();
-        playerOneStatus !== true ? playerOne():playerTwo();
-      }); 
-    };
-
-  function playerOne(){
-    db.playerOne.set(true);
-    game.gameTurn = true;
-    console.log('playerOne set');
-    console.log(game.gameTurn);
-  }
-
-  function playerTwo(){
-    db.playerTwo.set(true);
-    game.gameTurn = false;
-    console.log('playerTwo Set');
-    console.log(game.gameTurn)
-  }
+  c.initialize = game.initialize;
+  c.boardAlive = game.boardAlive;
 
 })(controller = window.controller || {}, jQuery, db,game);
 
-
-;(function(dom, $,db, game, c){
+;(function(dom, $, c, game){
   'use strict';
   $().ready(function(){
     //click event for join game   
     $('#join-game').click(function(){
-      //db.joinGame.set(0);
-      c.startGame();
+      c.initialize();
     });
+
+    dom.boardAlive = 'penny';
+
   });
-})(dom = window.dom || {},jQuery,db,game,controller);
+})(dom = window.dom || {},jQuery,controller, game);
 
 
 ;(function(db){
@@ -48,10 +30,67 @@
     db.players = db.game.child('players');
 })(db = window.firebase || {});
 
-;(function(game){
+;(function(game,db, $){
   var turnCounter = true;
-  game.initialBoard = [['','',''],['','',''],['','','']];  
-  
-  game.gameTurn = turnCounter;
-})(game = window.game || {});
+  game.initialBoard = '/////////'; 
+  var playerPiece;
+  var playerNumber;
+
+  function playerOne(){
+    db.playerOne.set(true);
+    turnCounter = true;
+    playerPiece = 'x';
+    db.joinGame.set(1);
+    $('#player-one').show('slow');
+    $('#waiting').show('slow');
+    $('#join-game').hide('slow');
+    }
+
+  function playerTwo(){
+    db.playerTwo.set(true);
+    turnCounter = false;
+    playerPiece = 'o';
+    db.joinGame.set(2);
+    $('#player-two').show('slow');
+    $('#join-game').hide('slow');
+    $('#player-one-turn').show('slow');
+  }
+
+  function turn(){
+    if(playerPiece === 'o'){
+      console.log('turn');
+    }
+  }
+
+  //public functions
+
+  function isTwoPlayers(){
+    db.joinGame.on('value',function(ref){
+      playerNumber = ref.val();
+      if(playerNumber === 2){
+        $('#waiting').hide('slow');
+        $('#player-one-turn').show('slow');
+        turn();
+      } 
+    });
+  };
+
+  function setPlayers(){
+    db.playerOne.once('value',function(ref){
+      playerOneStatus = ref.val();
+      if(playerOneStatus !== true){
+        playerOne();
+      } else {
+        playerTwo();
+      }
+    });
+  }
+
+  game.initialize = function(){
+    setPlayers();
+    isTwoPlayers();
+  }
+
+})(game = window.game || {},db, jQuery);
+
 

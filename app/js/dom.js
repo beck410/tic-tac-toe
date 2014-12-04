@@ -1,11 +1,13 @@
-;(function(dom, $,db, game, c){
+;(function(dom, $, c, game){
   'use strict';
   $().ready(function(){
     //click event for join game   
     $('#join-game').click(function(){
-      //db.joinGame.set(0);
-      c.startGame();
+      c.initialize();
     });
+
+    dom.boardAlive = 'penny';
+
   });
-})(dom = window.dom || {},jQuery,db,game,controller);
+})(dom = window.dom || {},jQuery,controller, game);
 

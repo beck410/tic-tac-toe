@@ -1,5 +1,27 @@
 /* variables */
 /* imports */
+#player-one, #player-two, #messages p, #player-one-turn, #player-two-turn {
+  display: none; }
+
+body {
+  text-align: center; }
+
+#messages p {
+  margin: 20px auto;
+  height: 400px;
+  width: 400px;
+  left: 35%;
+  top: 150px;
+  color: white;
+  font-size: 2em;
+  background: rgba(0, 255, 0, 0.7);
+  position: absolute; }
+
+#player-one, #player-two {
+  color: darkgrey;
+  font-size: 2em;
+  margin: 20px; }
+
 #board {
   margin: 20px auto;
   width: 300px;

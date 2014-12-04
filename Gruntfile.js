@@ -155,7 +155,7 @@ simplemocha: {
   
   grunt.task.run('notify_hooks');
 
-  grunt.registerTask('serve', ['connect:livereload','concat','uglify','sass','watch']);
+  grunt.registerTask('serve', ['connect:livereload','concat','sass','watch']);
   grunt.registerTask('css', ['sass','cssmin','uncss']);
   grunt.registerTask('js', ['concat','uglify']);
   grunt.registerTask('production', ['sass,cssmin,uncss','uglify','imagemin']);
